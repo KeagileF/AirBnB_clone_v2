@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Defines a class called BaseModel"""
 from datetime import datetime
-from models import storage
 import uuid
 
 
@@ -20,8 +19,6 @@ class BaseModel:
                     self.__dict__[key] = datetime.strptime(value, DT_FMT)
                 else:
                     self.__dict__[key] = value
-        else:
-            storage.new(self)
 
     def __str__(self):
         """Returns the official string representation of a BaseModel"""
@@ -30,7 +27,6 @@ class BaseModel:
     def save(self):
         """Updates ``updated_at`` with the curent datetime"""
         self.updated_at = datetime.now()
-        storage.save()
 
     def to_dict(self):
         """Returns a dictionary containing all keys/values of __dict__"""
