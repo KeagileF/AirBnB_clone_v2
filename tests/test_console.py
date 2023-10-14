@@ -12,7 +12,6 @@ Unittest classes:
     TestHBNBCommand_update
 """
 import os
-import system
 import unittest
 from models import storage
 from models.engine.file_storage import FileStorage
