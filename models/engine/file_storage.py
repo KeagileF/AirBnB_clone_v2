@@ -9,6 +9,7 @@ from models.review import Review
 from models.state import State
 from models.user import User
 
+
 class FileStorage:
     """Represents a FileStorage"""
     __file_path = "file.json"
