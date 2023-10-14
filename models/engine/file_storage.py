@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Defines the FileStorage class"""
 import json
+from os import path
 from models.amenity import Amenity
 from models.base_model import BaseModel
 from models.city import City
@@ -32,11 +33,12 @@ class FileStorage:
 
     def reload(self):
         """Deserializes the JSON file to __objects"""
-        try:
-            with open(self.__file_path, "r", encoding="utf-8") as f:
-                obj_d = json.load(f)
-                for obj in obj_d.values():
-                    cls = obj["__class__"]
-                    self.new(eval(cls)(**obj))
-        except FileNotFoundError:
-            return
+        if path.exists(self.__file_path) is True:
+            try:
+                with open(self.__file_path, "r", encoding="utf-8") as f:
+                    obj_d = json.load(f)
+                    for obj in obj_d.values():
+                        cls = obj["__class__"]
+                        self.new(eval(cls)(**obj))
+            except FileNotFoundError:
+                return
